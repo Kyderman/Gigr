@@ -1,4 +1,7 @@
 GigApp::Application.routes.draw do
+  resources :bands
+
+
   resources :venues
 
 
