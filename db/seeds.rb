@@ -20,5 +20,7 @@ user2 = User.find_or_create_by_email :name => 'Musician User', :email => 'user2@
 user2.add_role :musician
 user3 = User.find_or_create_by_email :name => 'Band User', :email => 'user3@example.com', :password => 'changeme', :password_confirmation => 'changeme'
 user3.add_role :band
+user4 = User.find_or_create_by_email :name => 'Venue User', :email => 'user3@example.com', :password => 'changeme', :password_confirmation => 'changeme'
+user4.add_role :venue
 
-puts "users: #{user2.name}, #{user3.name}"
+puts "users: #{user2.name}, #{user3.name}, #{user4.name}"

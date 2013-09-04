@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
         content_musician_path
       when 'band'
         content_band_path
-
+      when 'venue'
+        content_venue_path
       else
         root_path
     end

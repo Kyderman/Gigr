@@ -8,7 +8,7 @@ class Ability
     else
       can :view, :musician if user.has_role? :musician
       can :view, :band if user.has_role? :band
-      
+      can :view, :venue if user.has_role? :venue
     end
   end
 end
