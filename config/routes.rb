@@ -1,4 +1,7 @@
 GigApp::Application.routes.draw do
+  resources :musicians
+
+
   mount StripeEvent::Engine => '/stripe'
   get "content/band"
   get "content/musician"
