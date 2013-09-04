@@ -11,7 +11,18 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon
   before_save :update_stripe
   before_destroy :cancel_subscription
+  after_create :create_user_type
 
+
+  def create_user_type
+    current_role = self.roles.first
+    if current_role == 'musician' || 'band'
+      Musician.create(name: name, user_id: self.id)
+    else
+      Venue.create(name: name, user_id: self.id)
+    end  
+  end
+  
   def update_plan(role)
     self.role_ids = []
     self.add_role(role.name)

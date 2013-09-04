@@ -14,6 +14,7 @@ GigApp::Application.routes.draw do
   mount StripeEvent::Engine => '/stripe'
   get "content/band"
   get "content/musician"
+  get "content/venue"
  
   authenticated :user do
     root :to => 'home#index'
