@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-GigApp::Application.config.secret_token = '408f81ac741c7f3807d1e2c733769fbff12ed375db1f1d583518ebee6e8f4fa8896b056e80ee945fe5f4b2341dae7c259829e3cc2809bbf5abe39b15864e1799'
+GigApp::Application.config.secret_token = '61137c3eb088a6efeca72d9dba8c1afa74274aee4c5f39da131877a924be05030d452b4c3a7f29c2761175ad8989a6afae5b68ccdcd91dce30c4321ca8e8f808'
