@@ -1,2 +1,7 @@
-<h1>Content#musician</h1>
-<p>Find me in app/views/content/musician.html.erb</p>
+<%@current_musician = Musician.where(:user_id => current_user.id).first %> 
+<h1>Hello, <%= @current_musician.name %></h1>
+<% if @current_musician.instrument.blank? %>
+	<p>You play no instrument? propostorous! <%= link_to 'Change This', edit_musician_path(@current_musician)%></p>
+<% else %>
+	<p><%= @current_musician.instrument %></p>
+<% end %>

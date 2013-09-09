@@ -15,12 +15,16 @@ class User < ActiveRecord::Base
 
 
   def create_user_type
-    current_role = self.roles.first
-    if current_role == 'musician' || 'band'
-      Musician.create(name: name, user_id: self.id)
-    else
-      Venue.create(name: name, user_id: self.id)
-    end  
+      if self.has_role? :musician
+        Musician.create(name: name, user_id: self.id)
+      end 
+      if self.has_role? :band
+        Musician.create(name: name, user_id: self.id)
+        Band.create(name: name + "'s Band", user_id: self.id)
+      end 
+       if self.has_role? :venue
+        Venue.create(name: name + "'s Venue", user_id: self.id)
+      end 
   end
   
   def update_plan(role)

@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @musician %> |
-<%= link_to 'Back', musicians_path %>
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Show', @musician %>
+
+	<%= link_to 'Back', musicians_path %>
+<%else %>
+	<%= link_to 'Back', content_musician_path %>
+<% end %>

@@ -4,7 +4,9 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :user_id %>
+    <% if current_user.has_role? :admin%>
+    	<%= f.input :user_id %>
+    <% end %>
   </div>
 
   <div class="form-actions">
