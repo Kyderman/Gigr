@@ -1,7 +1,7 @@
 <%@current_venue = Venue.where(:user_id => current_user.id).first %> 
 <h1>Hello, <%= @current_venue.name %></h1>
-<% if @current_musician.description.blank? %>
+<% if @current_venue.description.blank? %>
 	<p>Let people know what your venue is all about! <%= link_to 'Edit Venue', edit_venue_path(@current_venue)%></p>
 <% else %>
-	<p><%= @current_musician.description %></p>
+	<p><%= @current_venue.description %></p>
 <% end %>

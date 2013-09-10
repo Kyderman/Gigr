@@ -8,6 +8,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
+gem "simple_calendar", "~> 0.1.9"
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'

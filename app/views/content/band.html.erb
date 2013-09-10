@@ -25,9 +25,9 @@
       			<td rowspan=<%=b.musicians.count.to_s%>><%= b.name %></td>
       			<td rowspan=<%=b.musicians.count.to_s%>><%= Musician.where(:user_id => b.user_id).first.name %></td>
       			<td>
-      				<%@count = 0%>
+      				
       			<% b.musicians.each do |m| %>
-      				<%@count += 1%>
+      				
       				<p><%= m.name %></p>
   
       			<%end%>
@@ -36,5 +36,15 @@
     		<%end%>
   		</tbody>
 	</table>
+<%@events = []%>
+<%@bands.each do |b|%>
+	<%b.events.each do |e|%>
+		<%@events << e%>
+	<%end%>
+<%end%>	
+
+	<%= calendar @events do |event| %>
+  <div><%= link_to event.name, event %></div>
+<% end %>
 
 

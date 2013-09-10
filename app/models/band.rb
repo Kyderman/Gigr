@@ -5,4 +5,5 @@ class Band < ActiveRecord::Base
   belongs_to :user
   has_many :musicians, through: :bands_musician
   has_many :events, through: :bands_event
+  accepts_nested_attributes_for :events, :bands_event
 end
