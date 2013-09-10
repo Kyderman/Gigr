@@ -6,5 +6,35 @@
 	<p><%= @current_musician.instrument %></p>
 <% end %>
 <hr>
-<h2>Owned Bands</h2>
+<h2>Bands</h2>
+
+<% @bands = @current_musician.bands %>
+
+	<table class="table table-bordered">
+		<thead>
+    		<tr>
+      			<th>Name</th>
+      			<th>Owner</th>
+      			<th>Members</th>
+    		</tr>
+  		</thead>
+  		
+  		<tbody>
+  			<%@bands.each do |b|%>
+    		<tr>
+      			<td rowspan=<%=b.musicians.count.to_s%>><%= b.name %></td>
+      			<td rowspan=<%=b.musicians.count.to_s%>><%= Musician.where(:user_id => b.user_id).first.name %></td>
+      			<td>
+      				<%@count = 0%>
+      			<% b.musicians.each do |m| %>
+      				<%@count += 1%>
+      				<p><%= m.name %></p>
+  
+      			<%end%>
+      			</td>
+    		</tr>
+    		<%end%>
+  		</tbody>
+	</table>
+
 
