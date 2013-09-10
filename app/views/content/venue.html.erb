@@ -5,3 +5,10 @@
 <% else %>
 	<p><%= @current_venue.description %></p>
 <% end %>
+
+<%@events = @current_venue.events%>
+
+
+	<%= calendar @events do |event| %>
+  <div><%= link_to event.name, event %></div>
+<% end %>
