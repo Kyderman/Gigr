@@ -10,5 +10,5 @@
 
 
 	<%= calendar @events do |event| %>
-  <div><%= link_to event.name, event %></div>
+  <div><%= link_to event.name + " |" + event.start, event %></div>
 <% end %>
