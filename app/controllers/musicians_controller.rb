@@ -52,12 +52,14 @@ class MusiciansController < ApplicationController
       end
     end
   end
+  
+ 
 
   # PUT /musicians/1
   # PUT /musicians/1.json
   def update
     @musician = Musician.find(params[:id])
-
+    
     respond_to do |format|
       if @musician.update_attributes(params[:musician])
         format.html { redirect_to @musician, notice: 'Musician was successfully updated.' }

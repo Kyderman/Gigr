@@ -37,15 +37,17 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
   end
 
+  
   # POST /bands
   # POST /bands.json
   def create
     @band = Band.new(params[:band])
-
+    
     respond_to do |format|
       if @band.save
         format.html { redirect_to @band, notice: 'Band was successfully created.' }
         format.json { render json: @band, status: :created, location: @band }
+        
       else
         format.html { render action: "new" }
         format.json { render json: @band.errors, status: :unprocessable_entity }
