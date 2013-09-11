@@ -9,7 +9,8 @@ group :assets do
 end
 gem 'jquery-rails'
 gem "simple_calendar", "~> 0.1.9"
-gem 'bootstrap-sass'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
