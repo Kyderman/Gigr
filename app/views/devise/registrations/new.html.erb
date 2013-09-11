@@ -1,8 +1,9 @@
 <% content_for :head do %>
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 <% end %>
+
 <h2>Sign up</h2>
-<div id="stripe_error" class="alert alert-error" style="display:none" >
+<div id="stripe_error" class="alert alert-danger" style="display:none" >
 </div>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f| %>
   <h3><%= params[:plan].titleize if params[:plan] %> Subscription Plan</h3>
@@ -20,16 +21,25 @@
 	  <% else %>
 	    <div class="field">
 	      <%= label_tag :card_number, "Credit Card Number" %>
-	      <%= text_field_tag :card_number, nil, name: nil %>
+	      <%= text_field_tag :card_number, nil, name: nil, :class => "form-control" %>
 	    </div>
 	    <div class="field">
 	      <%= label_tag :card_code, "Card Security Code (CVV)" %>
-	      <%= text_field_tag :card_code, nil, name: nil %>
+	      <%= text_field_tag :card_code, nil, name: nil, :class => "form-control" %>
 	    </div>
+	    
 	    <div class="field">
+	    	<div class="row">
+	    		<div class="col-md-12">
 	      <%= label_tag :card_month, "Card Expiration" %>
-	      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
-	      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+	     </div>
+	      <div class="col-xs-6">
+	      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :class => "form-control"}%>
+	      </div>
+	      <div class="col-xs-6">
+	      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :class => "form-control"}%>
+	      </div>
+	    </div>
 	    </div>
 	    <div class="field">
 	      <%= f.input :coupon, :label => 'Promotional Coupon (if any)' %>
@@ -38,6 +48,6 @@
 	  <%= f.hidden_field :stripe_token %>
 	<% end %>
   
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
+  <%= f.button :submit, 'Sign up', :class => 'btn btn-primary' %>
 <% end %>
 
