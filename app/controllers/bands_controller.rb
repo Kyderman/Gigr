@@ -1,6 +1,7 @@
 class BandsController < ApplicationController
   # GET /bands
   # GET /bands.json
+  load_and_authorize_resource
   def index
     @bands = Band.all
 

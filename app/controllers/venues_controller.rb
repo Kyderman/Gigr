@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   # GET /venues
   # GET /venues.json
+  load_and_authorize_resource
   def index
     @venues = Venue.all
 

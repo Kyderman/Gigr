@@ -1,30 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @event.name %>
+  	<b>Name:</b>
+  	<%= @event.name %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @event.description %>
+  	<b>Description:</b>
+  	<%= @event.description %>
 </p>
 
 <p>
-  <b>Venue:</b>
-  <%= @event.venue.name %>
+	<b>Venue:</b>
+  	<%= @event.venue.name %>
 </p>
 
 <p>
-  <b>Start:</b>
-  <%= @event.start %>
+  	<b>Start:</b>
+  	<%= @event.start %>
 </p>
 
 <p>
-  <b>End:</b>
-  <%= @event.end %>
+  	<b>End:</b>
+  	<%= @event.end %>
+</p>
+
+<p>
+  	<b>Bands:</b>
+  	<% @event.bands.each do |b| %>
+  		<p><%= link_to b.name, b %></p>
+	<%end%>
 </p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+
+<% if can? :update, @event%>
+<%= link_to 'Edit', edit_event_path(@event) %>
+<%end%>
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', events_path %>
+<%end%>

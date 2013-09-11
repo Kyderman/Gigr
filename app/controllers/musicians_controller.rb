@@ -1,6 +1,8 @@
 class MusiciansController < ApplicationController
   # GET /musicians
   # GET /musicians.json
+  load_and_authorize_resource
+  
   def index
     @musicians = Musician.all
 

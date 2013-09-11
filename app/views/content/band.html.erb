@@ -3,7 +3,7 @@
 <% if @current_musician.instrument.blank? %>
 	<p>You play no instrument? propostorous! <%= link_to 'Change This', edit_musician_path(@current_musician)%></p>
 <% else %>
-	<p><%= @current_musician.instrument %></p>
+	<p><%= @current_musician.instrument %> <%= link_to 'Change This', edit_musician_path(@current_musician)%></p>
 <% end %>
 <hr>
 <h2>Bands</h2>
@@ -36,6 +36,8 @@
     		<%end%>
   		</tbody>
 	</table>
+
+<hr>
 <%@events = []%>
 <%@bands.each do |b|%>
 	<%b.events.each do |e|%>
@@ -44,7 +46,7 @@
 <%end%>	
 
 	<%= calendar @events do |event| %>
-  <div><%= link_to event.name + " | " + event.start.to_s, event %></div>
+  <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
 <% end %>
 
 
