@@ -5,10 +5,12 @@
 <% else %>
 	<p><%= @current_venue.description %></p>
 <% end %>
-
+<hr>
 <%@events = @current_venue.events%>
 
 
 	<%= calendar @events do |event| %>
   <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
 <% end %>
+
+<%= link_to "create new event", new_event_path %>

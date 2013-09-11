@@ -25,8 +25,9 @@ class Ability
         can :update, Venue do |v|
           v.try(:user) == user
         end
-        can :manage, Event do |e|
-          e.try(:user) == user
+        can :create, Event
+        can :update, Event do |e|
+          e.try(:venue) == Venue.where(user_id: user.id).first.id
         end
       end
     end

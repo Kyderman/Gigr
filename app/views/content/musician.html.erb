@@ -5,3 +5,16 @@
 <% else %>
 	<p><%= @current_musician.instrument %></p>
 <% end %>
+
+<hr>
+<%@events = []%>
+<%@current_musician.bands.each do |b|%>
+	<%b.events.each do |e|%>
+		<%@events << e%>
+	<%end%>
+<%end%>	
+
+	<%= calendar @events do |event| %>
+  <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
+<% end %>
+

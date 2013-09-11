@@ -22,13 +22,13 @@
   		<tbody>
   			<%@bands.each do |b|%>
     		<tr>
-      			<td rowspan=<%=b.musicians.count.to_s%>><%= b.name %></td>
-      			<td rowspan=<%=b.musicians.count.to_s%>><%= Musician.where(:user_id => b.user_id).first.name %></td>
+      			<td rowspan=<%=b.musicians.count.to_s%>><%= link_to b.name, b %></td>
+      			<td rowspan=<%=b.musicians.count.to_s%>><%= link_to Musician.where(:user_id => b.user_id).first.name, Musician.where(:user_id => b.user_id).first%></td>
       			<td>
       				
       			<% b.musicians.each do |m| %>
       				
-      				<p><%= m.name %></p>
+      				<p><%= link_to m.name, m %></p>
   
       			<%end%>
       			</td>
@@ -48,5 +48,7 @@
 	<%= calendar @events do |event| %>
   <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
 <% end %>
+
+
 
 

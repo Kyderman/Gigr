@@ -9,6 +9,7 @@
 	<%else%>
 		<%= f.hidden_field :user_id, value: User.where(id: current_user.id).first.id %>
     <% end %>
+    <%= f.association :musicians %>
   </div>
 
   <div class="form-actions">
