@@ -9,7 +9,7 @@
 <h2>Bands</h2>
 
 <% @bands = @current_musician.bands %>
-
+<div class="table-responsive">
 	<table class="table table-bordered">
 		<thead>
     		<tr>
@@ -21,14 +21,25 @@
   		
   		<tbody>
   			<%@bands.each do |b|%>
+  			<%@band_owner = b.musicians.where(:user_id => b.user_id).first%>
     		<tr>
       			<td rowspan=<%=b.musicians.count.to_s%>><%= link_to b.name, b %></td>
-      			<td rowspan=<%=b.musicians.count.to_s%>><%= link_to Musician.where(:user_id => b.user_id).first.name, Musician.where(:user_id => b.user_id).first%></td>
+      			<td rowspan=<%=b.musicians.count.to_s%>>
+      				<%if @band_owner.id != @current_musician.id%>
+      					<p><%= link_to @band_owner.name, @band_owner %></p>
+  					<%else%>
+						<p><%= link_to "You", @current_musician %></p>
+					<%end%>
+      				</td>
       			<td>
       				
       			<% b.musicians.each do |m| %>
       				
-      				<p><%= link_to m.name, m %></p>
+      				<%if m.id != @current_musician.id%>
+      					<p><%= link_to m.name, m %></p>
+  					<%else%>
+						<p><%= link_to "You", m %></p>
+					<%end%>
   
       			<%end%>
       			</td>
@@ -36,6 +47,7 @@
     		<%end%>
   		</tbody>
 	</table>
+</div>
 
 <hr>
 <%@events = []%>
@@ -44,9 +56,10 @@
 		<%@events << e%>
 	<%end%>
 <%end%>	
-
+<div class="table-responsive">
 	<%= calendar @events do |event| %>
   <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
+  </div>
 <% end %>
 
 
