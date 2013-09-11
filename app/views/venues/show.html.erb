@@ -31,5 +31,10 @@
 </p>
 
 
-<%= link_to 'Edit', edit_venue_path(@venue) %> |
-<%= link_to 'Back', venues_path %>
+<% if can? :update, @venue%>
+<%= link_to 'Edit', edit_venue_path(@venue) %>
+<%end%>
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', venues_path %>
+<%end%>

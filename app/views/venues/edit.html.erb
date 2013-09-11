@@ -3,4 +3,7 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @venue %> |
-<%= link_to 'Back', venues_path %>
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', venues_path %>
+<%end%>

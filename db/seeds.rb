@@ -27,3 +27,10 @@ user4.add_role :venue
 user4.create_user_type
 
 puts "users: #{user2.name}, #{user3.name}, #{user4.name}"
+
+puts 'EXTRA MUSICIANS'
+Musician.create(name: "Ryan Inglis", instrument: "Guitar")
+Musician.create(name: "Peter Fealey", instrument: "Bass")
+Musician.create(name: "Rob Whelan", instrument: "Drums")
+Musician.create(name: "Tom Forrester", instrument: "Vocals")
+

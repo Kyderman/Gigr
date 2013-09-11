@@ -7,7 +7,11 @@
     <%= f.input :address_2 %>
     <%= f.input :post_code %>
     <%= f.input :description %>
-    <%= f.input :user_id %>
+    <% if current_user.has_role? :admin%>
+    	<%= f.input :user_id %>
+	<%else%>
+		<%= f.hidden_field :user_id, value: User.where(user_id: current_user.id).first.id %>
+    <% end %>
   </div>
 
   <div class="form-actions">

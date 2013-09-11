@@ -3,4 +3,9 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @band %> |
-<%= link_to 'Back', bands_path %>
+
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', bands_path %>
+<%end%>
+

@@ -16,5 +16,10 @@
 </p>
 
 
-<%= link_to 'Edit', edit_band_path(@band) %> |
-<%= link_to 'Back', bands_path %>
+<% if can? :update, @band%>
+<%= link_to 'Edit', edit_band_path(@band) %>
+<%end%>
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', bands_path %>
+<%end%>

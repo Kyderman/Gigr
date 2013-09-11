@@ -16,5 +16,10 @@
 </p>
 
 
-<%= link_to 'Edit', edit_musician_path(@musician) %> |
-<%= link_to 'Back', musicians_path %>
+<% if can? :update, @musician%>
+<%= link_to 'Edit', edit_musician_path(@musician) %>
+<%end%>
+
+<% if current_user.has_role? :admin%>
+	<%= link_to 'Back', musicians_path %>
+<%end%>
