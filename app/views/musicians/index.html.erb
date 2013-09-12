@@ -1,27 +1,33 @@
-<h1>Listing musicians</h1>
+<div class="jumbotron">	
+	<h1>All Musicians</h1>
+	<%= link_to 'New Musician', new_musician_path, :class => "btn btn-success" %>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered">
+	  <tr>
+	    <th>Name</th>
+	    <th>Instrument</th>
+	    <th>User</th>
+	    <th>Bands</th>
+	  </tr>
+	
+	<% @musicians.each do |musician| %>
+	  <tr>
+	    <td><%= musician.name %></td>
+	    <td><%= musician.instrument %></td>
+	    <td><%= link_to musician.user_id, musician.user %></td>
+	    <td><% musician.bands.each do |b|%>
+		    	<p><%= link_to b.name, b%></p>
+		    	<%end%>
+		    </td>
+	    <td class="text-center"><%= link_to 'Show', musician, :class => "btn-sm btn-success" %></td>
+	    <td class="text-center"><%= link_to 'Edit', edit_musician_path(musician), :class => "btn-sm btn-info" %></td>
+	    <td class="text-center"><%= link_to 'Destroy', musician, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger" %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Instrument</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= render 'layouts/footer'%>
 
-<% @musicians.each do |musician| %>
-  <tr>
-    <td><%= musician.name %></td>
-    <td><%= musician.instrument %></td>
-    <td><%= musician.user_id %></td>
-    <td><%= link_to 'Show', musician %></td>
-    <td><%= link_to 'Edit', edit_musician_path(musician) %></td>
-    <td><%= link_to 'Destroy', musician, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Musician', new_musician_path, :class => "btn btn-success" %>

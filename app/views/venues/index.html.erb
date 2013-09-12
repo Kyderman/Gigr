@@ -1,33 +1,31 @@
-<h1>Listing venues</h1>
-
-<table>
+<div class="jumbotron">
+	<h1>All Venues</h1>
+	<%= link_to 'New Venue', new_venue_path, :class => "btn btn-success" %>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered">
   <tr>
     <th>Name</th>
-    <th>Address 1</th>
-    <th>Address 2</th>
-    <th>Post code</th>
     <th>Description</th>
     <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    
   </tr>
 
 <% @venues.each do |venue| %>
   <tr>
     <td><%= venue.name %></td>
-    <td><%= venue.address_1 %></td>
-    <td><%= venue.address_2 %></td>
-    <td><%= venue.post_code %></td>
     <td><%= venue.description %></td>
-    <td><%= venue.user_id %></td>
-    <td><%= link_to 'Show', venue %></td>
-    <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-    <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to venue.user_id, venue.user %></td>
+    <td class="text-center"><%= link_to 'Show', venue, :class => "btn-sm btn-success" %></td>
+    <td class="text-center"><%= link_to 'Edit', edit_venue_path(venue), :class => "btn-sm btn-info" %></td>
+    <td class="text-center"><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger" %></td>
   </tr>
 <% end %>
 </table>
+</div>
 
-<br />
 
-<%= link_to 'New Venue', new_venue_path %>
+
+
+
+<%= render 'layouts/footer'%>
