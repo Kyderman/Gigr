@@ -1,8 +1,19 @@
-<h2>Sign in</h2>
+<div class="jumbotron">
+<h1>Sign in</h1>
+</div>
+<div class="well">
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
   <%= f.input :email, :autofocus => true %>
   <%= f.input :password %>
   <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-  <%= f.button :submit, "Sign in", :class => 'btn btn-primary' %>
+  
+
+<div class="row">
+	<div class="col-sm-12">
+	<%= f.button :submit, "Sign in", :class => 'btn btn-primary' %>
+	<%= render "devise/shared/links" %>
+	</div>
+</div>
+</div>
 <% end %>
-<%= render "devise/shared/links" %>
+<%=render 'layouts/footer'%>
