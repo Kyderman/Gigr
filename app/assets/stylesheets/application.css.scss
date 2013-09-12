@@ -14,4 +14,15 @@
 
 @import "twitter/bootstrap";
 
+.well .page-header
+{
+  border-bottom: 1px solid #333333;
+  margin-top: 0px;
+}
+.well .table,
+.well .table td,
+.well .table th
+{
+  border-color: #333333;
+}
 
