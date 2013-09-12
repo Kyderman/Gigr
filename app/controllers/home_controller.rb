@@ -11,7 +11,7 @@ class HomeController < ApplicationController
         redirect_to '/content/band'
       end
       if current_user.has_role? :admin
-        redirect_to 'users#index'
+        redirect_to '/users'
       end
     end
   end
