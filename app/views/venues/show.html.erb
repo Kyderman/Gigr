@@ -1,40 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @venue.name %>
-</p>
+<div class="jumbotron">
+	<h1>
+	  <%= @venue.name %>
+	</h1>
+	
+	<p>
+	  
+	  <%= @venue.address_1 %>
+	</p>
+	
+	<p>
+	  
+	  <%= @venue.address_2 %>
+	</p>
+	
+	<p>
+	 
+	  <%= @venue.post_code %>
+	</p>
+	
+	<p>
+	  
+	  <%= @venue.description %>
+	</p>
+	
+	<% if current_user.has_role? :admin%>
+	<p>
+	  <b>User ID:</b>
+	  <%= @venue.user_id  %>
+	</p>
+	<%end%>
+</div>	
 
-<p>
-  <b>Address 1:</b>
-  <%= @venue.address_1 %>
-</p>
-
-<p>
-  <b>Address 2:</b>
-  <%= @venue.address_2 %>
-</p>
-
-<p>
-  <b>Post code:</b>
-  <%= @venue.post_code %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @venue.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @venue.user_id %>
-</p>
+<div class="well">
+	<% if can? :update, @venue%>
+	<%= link_to 'Edit', edit_venue_path(@venue), :class => "btn btn-info" %>
+	<%end%>
+	
+	<% if current_user.has_role? :admin%>
+		<%= link_to 'Back', venues_path, :class => "btn btn-danger" %>
+	<%end%>
+</div>	
 
 
-<% if can? :update, @venue%>
-<%= link_to 'Edit', edit_venue_path(@venue) %>
-<%end%>
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', venues_path %>
-<%end%>
+<%= render "layouts/footer"%>

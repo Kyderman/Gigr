@@ -1,9 +1,12 @@
-<h1>New venue</h1>
+<div class="jumbotron">
+	<h1>Create New Venue</h1>
+</div>
+<div class="well">
+	<%= render 'form' %>
+	<% if current_user.has_role? :admin%>
+		<%= link_to 'Back', venues_path, :class => "btn btn-danger" %>
+	<%end%>
+	</div>
+</div>
 
-<%= render 'form' %>
-
-
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', venues_path %>
-<%end%>
+<%= render "layouts/footer"%>

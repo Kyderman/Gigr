@@ -1,9 +1,17 @@
-<h1>Editing venue</h1>
+<div class="jumbotron">
+	<h1>Edit Venue Profile</h1>
+</div>
+<div class ="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<%= render 'form' %>
+			<%= link_to 'Exit Edit', @venue, :class => "btn btn-info" %>
+			<% if current_user.has_role? :admin%>
+				<%= link_to 'Back', venues_path, :class => "btn btn-danger" %>
+			<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "layouts/footer"%>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @venue %>
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', venues_path %>
-<%end%>
