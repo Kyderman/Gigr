@@ -9,7 +9,7 @@
 	<% end %>
 	<%= link_to 'Edit', edit_musician_path(@current_musician), :class => "btn btn-info"%>
 </div>
-<div class="well">
+
 	<div class="page-header">
   <h1>Bands</h1>
 </div>
@@ -54,7 +54,7 @@
 	  		</tbody>
 		</table>
 	</div>
-</div>
+
 
 <%@events = []%>
 <%@bands.each do |b|%>
@@ -62,7 +62,7 @@
 		<%@events << e%>
 	<%end%>
 <%end%>	
-<div class="well">
+
 	<div class="page-header">
   <h1>Events</h1>
 </div>
@@ -71,7 +71,7 @@
 	  	<div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
 	  	<% end %>
 	</div>
-</div>
+
 
 
 
