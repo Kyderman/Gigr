@@ -1,43 +1,44 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron">
+	<h1>
+	  	<%= @event.name %>
+	</h1>
+	
+	<p>
+	  	<%= @event.description %>
+	</p>
+	
+	<p>
+		<b>@ </b>
+	  	<%= @event.venue.name %>
+	</p>
+	
+	<p>
+	  	<b>Start:</b>
+	  	<%= @event.start %>
+	</p>
+	
+	<p>
+	  	<b>End:</b>
+	  	<%= @event.end %>
+	</p>
+	
+	<p>
+	  	<b>Bands:</b>
+	  	<% @event.bands.each do |b| %>
+	  		<%= link_to b.name, b %>
+		<%end%>
+	</p>
+</div>
 
-<p>
-  	<b>Name:</b>
-  	<%= @event.name %>
-</p>
-
-<p>
-  	<b>Description:</b>
-  	<%= @event.description %>
-</p>
-
-<p>
-	<b>Venue:</b>
-  	<%= @event.venue.name %>
-</p>
-
-<p>
-  	<b>Start:</b>
-  	<%= @event.start %>
-</p>
-
-<p>
-  	<b>End:</b>
-  	<%= @event.end %>
-</p>
-
-<p>
-  	<b>Bands:</b>
-  	<% @event.bands.each do |b| %>
-  		<p><%= link_to b.name, b %></p>
+<div class="well">
+	<% if can? :update, @event%>
+	<%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
 	<%end%>
-</p>
+	
+	<% if current_user.has_role? :admin%>
+		<%= link_to 'Back', events_path, :class => "btn btn-danger" %>
+	<%end%>
+</div>
 
-
-
-<% if can? :update, @event%>
-<%= link_to 'Edit', edit_event_path(@event) %>
-<%end%>
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', events_path %>
-<%end%>
+<%= render "layouts/footer"%>
