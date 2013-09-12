@@ -1,12 +1,16 @@
-<h1>Editing musician</h1>
-
-<%= render 'form' %>
-
-
-<%= link_to 'Show', @musician %>
-
-
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', musicians_path %>
-<%end%>
+<div class="jumbotron">
+	<h1>Edit Musician Profile</h1>
+</div>
+<div class ="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<%= render 'form' %>
+			<%= link_to 'Exit Edit', @musician, :class => "btn btn-success" %>
+			<% if current_user.has_role? :admin%>
+				<%= link_to 'Back', musicians_path, :class => "btn btn-danger" %>
+			<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "layouts/footer"%>

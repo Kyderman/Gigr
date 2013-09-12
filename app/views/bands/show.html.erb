@@ -1,33 +1,41 @@
 <p id="notice"><%= notice %></p>
+<div class="jumbotron">
+	<h1>
+	  
+	  <%= @band.name %>
+	</h1>
 
-<p>
-  <b>Name:</b>
-  <%= @band.name %>
-</p>
+	<p>
+	  <%= @band.description %>
+	</p>
+	
+	<% if current_user.has_role? :admin%>
+	<p>
+	  <b>User ID:</b>
+	  <%= @band.user_id  %>
+	</p>
+	<%end%>
 
-<p>
-  <b>Description:</b>
-  <%= @band.description %>
-</p>
+	
+	<p>
+	  <b>Members:</b>
+	  <% @band.musicians.each do |m| %>
+	  	<%= link_to m.name, m %>
+	  <% end %>
+	  
+	</p>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= @band.user_id %>
-</p>
+<div class="well">
+	<% if can? :update, @band%>
+	<%= link_to 'Edit', edit_band_path(@band), :class => "btn btn-info"%>
+	<%end%>
+	
+	<% if current_user.has_role? :admin%>
+		<%= link_to 'Back', bands_path, :class => "btn btn-danger"%>
+	<%end%>
+</div>
+</div>
 
-<p>
-  <b>Members:</b>
-  <% @band.musicians.each do |m| %>
-  	<%= link_to m.name, m %>
-  <% end %>
-  
-</p>
+<%= render "layouts/footer"%>
 
-
-<% if can? :update, @band%>
-<%= link_to 'Edit', edit_band_path(@band) %>
-<%end%>
-
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', bands_path %>
-<%end%>

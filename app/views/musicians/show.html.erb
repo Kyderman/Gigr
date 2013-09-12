@@ -1,25 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+<div class="jumbotron">
+<h1>
+ 
   <%= @musician.name %>
-</p>
+</h1>
+
 
 <p>
-  <b>Instrument:</b>
+  <b>Instruments:</b>
   <%= @musician.instrument %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @musician.user_id %>
-</p>
-
-
-<% if can? :update, @musician%>
-<%= link_to 'Edit', edit_musician_path(@musician) %>
-<%end%>
-
 <% if current_user.has_role? :admin%>
-	<%= link_to 'Back', musicians_path %>
+	<p>
+	  <b>User ID:</b>
+	  <%= @musician.user_id  %>
+	</p>
 <%end%>
+
+</div>
+<div class="well">
+	<% if can? :update, @musician%>
+		<%= link_to 'Edit', edit_musician_path(@musician), :class => "btn btn-success" %>
+	<%end%>
+	
+	<% if current_user.has_role? :admin%>
+		<%= link_to 'Back', musicians_path, :class => "btn btn-danger" %>
+	<%end%>
+	</div>
+</div>
+<%= render "layouts/footer"%>
