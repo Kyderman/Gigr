@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 <div class="jumbotron">
 	<h1>
 	  	<%= @event.name %>
@@ -38,6 +38,8 @@
 	
 	<% if current_user.has_role? :admin%>
 		<%= link_to 'Back', events_path, :class => "btn btn-danger" %>
+	<%else%>
+		<%= link_to 'Back', root_path, :class => "btn btn-danger" %>
 	<%end%>
 </div>
 

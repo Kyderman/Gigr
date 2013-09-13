@@ -1,10 +1,18 @@
-<h1>Editing event</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @event %>
 
 
-<% if current_user.has_role? :admin%>
-	<%= link_to 'Back', events_path %>
-<%end%>
+<div class="jumbotron">
+	<h1>Edit Event</h1>
+</div>
+<div class ="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<%= render 'form' %>
+			<%= link_to 'Exit Edit', @event, :class => "btn btn-info" %>
+			<% if current_user.has_role? :admin%>
+				<%= link_to 'Back', event_path, :class => "btn btn-danger" %>
+			<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "layouts/footer"%>

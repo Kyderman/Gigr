@@ -7,14 +7,19 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      cannot :index, :all
       if user.has_role? :musician
         can :view, :musician
         can :update, Musician do |m|
           m.try(:user) == user
         end
       elsif user.has_role? :band
+        
         can :view, :band
         can :update, Band do |b|
+          b.try(:user) == user
+        end
+        can :destroy, Band do |b|
           b.try(:user) == user
         end
         can :update, Musician do |m|
@@ -27,7 +32,7 @@ class Ability
         end
         can :create, Event
         can :update, Event do |e|
-          e.try(:venue) == Venue.where(user_id: user.id).first.id
+          e.try(:venue) == Venue.where(user_id: user.id).first
         end
       end
     end

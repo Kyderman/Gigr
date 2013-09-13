@@ -49,6 +49,10 @@
 	  
 	      			<%end%>
 	      			</td>
+	      			<%if @band_owner == @current_musician%>
+	    				<td class="text-center"><%= link_to 'Edit', edit_band_path(b), :class => "btn-sm btn-info" %></td>
+	    				<td class="text-center"><%= link_to 'Destroy', b, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger" %></td>
+	      			<%end%>
 	    		</tr>
 	    		<%end%>
 	  		</tbody>

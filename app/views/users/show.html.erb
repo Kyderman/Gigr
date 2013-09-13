@@ -5,9 +5,75 @@
 	<%end%>
 	</h1>
 	<h2><%= @user.email if @user.email %></h2>
-	
-	
-	
+	<h4>Current sign in @ <%= @user.current_sign_in_at%></h4>
+	<h4>Last sign in @ <%= @user.last_sign_in_at%></h4>
+	<h4>Created @ <%= @user.created_at%></h4>
+	<h4>Current sign-in IP @ <%= @user.current_sign_in_ip%></h4>
+	<h4>Last sign-in IP @ <%= @user.last_sign_in_ip%></h4>
 </div>
 
+<%if (@user.has_role? (:band)) || (@user.has_role? (:musician)) %>
+<%@cur_mus = Musician.where(user_id: @user.id).first %>
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+	    		<tr>
+	      			<th>Linked Musician</th>
+	      			<th>Linked Bands</th>
+	    		</tr>
+	  		</thead>
+	  		
+	  		<tbody>
+	  			
+	  			<tr>
+	  				<td><%= link_to @cur_mus.name, @cur_mus%></td>
+	  				<td>
+	  				<% @cur_mus.bands.each do |b| %>
+	      				
+	      				<%=link_to b.name, b%>
+	  
+	      			<%end%>
+	      			</td>
+	  				
+	  			</tr>
+	  			
+	  		</tbody>
+		</table>
+	</div>
+<%end%>
 
+<%if @user.has_role? :venue%>
+<%@cur_ven = Venue.where(user_id: @user.id).first %>
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+	    		<tr>
+	      			<th>Linked Venue</th>
+	      			<th>Linked Events</th>
+	    		</tr>
+	  		</thead>
+	  		
+	  		<tbody>
+	  			
+	  			<tr>
+	  				<td><%= link_to @cur_ven.name, @cur_ven%></td>
+	  				<td>
+	  				<% @cur_ven.events.each do |e| %>
+	      				
+	      				<%=link_to e.name + " | " + e.start.to_s, e%>
+	  
+	      			<%end%>
+	      			</td>
+	  				
+	  			</tr>
+	  			
+	  		</tbody>
+		</table>
+	</div>
+<%end%>
+
+<div class="well">
+	<%= link_to 'Back', users_path, :class => "btn btn-danger" %>
+</div>
+
+<%= render "layouts/footer"%>

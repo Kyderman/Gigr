@@ -1,16 +1,28 @@
 <%@current_venue = Venue.where(:user_id => current_user.id).first %> 
-<h1>Hello, <%= @current_venue.name %></h1>
-<% if @current_venue.description.blank? %>
-	<p>Let people know what your venue is all about! <%= link_to 'Edit Venue', edit_venue_path(@current_venue)%></p>
-<% else %>
-	<p><%= @current_venue.description %></p>
-<% end %>
-<hr>
+<div class="jumbotron">
+	<h1>Hello, <%= @current_venue.name %></h1>
+	<% if @current_venue.description.blank? %>
+		<p>Let people know what your venue is all about!</p>
+	<% else %>
+		<p><%= @current_venue.description %></p>
+	<% end %>
+	<%= link_to 'Edit', edit_venue_path(@current_venue), :class => "btn btn-info"%>
+	<%= link_to 'New Event', new_event_path, :class => "btn btn-success" %>
+</div>
+
 <%@events = @current_venue.events%>
 
 
-	<%= calendar @events do |event| %>
-  <div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
-<% end %>
+	<div class="page-header">
+  <h1>Events</h1>
+</div>
+	<div class="table-responsive">
+		<%= calendar @events do |event| %>
+	  	<div><%= link_to event.name + " | " + event.start.strftime("%I:%M%p"), event %></div>
+	  	<% end %>
+	</div>
 
-<%= link_to "create new event", new_event_path %>
+
+
+
+<%=render 'layouts/footer'%>

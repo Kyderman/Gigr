@@ -34,3 +34,5 @@ Musician.create(name: "Peter Fealey", instrument: "Bass")
 Musician.create(name: "Rob Whelan", instrument: "Drums")
 Musician.create(name: "Tom Forrester", instrument: "Vocals")
 
+
+

@@ -13,7 +13,7 @@
 	
 	<% @musicians.each do |musician| %>
 	  <tr>
-	    <td><%= musician.name %></td>
+	    <td><%= link_to musician.name, musician %></td>
 	    <td><%= musician.instrument %></td>
 	    <td><%= link_to musician.user_id, musician.user %></td>
 	    <td><% musician.bands.each do |b|%>
