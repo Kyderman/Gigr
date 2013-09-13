@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130913145306) do
+ActiveRecord::Schema.define(:version => 20130913153949) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(:version => 20130913145306) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "musicians_instruments", :force => true do |t|
+    t.integer  "musician_id"
+    t.integer  "instrument_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "musicians_instruments", ["instrument_id"], :name => "index_musicians_instruments_on_instrument_id"
+  add_index "musicians_instruments", ["musician_id", "instrument_id"], :name => "index_musicians_instruments_on_musician_id_and_instrument_id", :unique => true
+  add_index "musicians_instruments", ["musician_id"], :name => "index_musicians_instruments_on_musician_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

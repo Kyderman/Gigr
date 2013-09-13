@@ -18,7 +18,7 @@ GigApp::Application.routes.draw do
   get "content/band"
   get "content/musician"
   get "content/venue"
-  get "home/about"
+ 
  
   authenticated :user do
     root :to => 'home#index'
