@@ -33,7 +33,7 @@
 
 <div class="well">
 	<% if can? :update, @event%>
-	<%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
+		<%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
 	<%end%>
 	
 	<% if current_user.has_role? :admin%>

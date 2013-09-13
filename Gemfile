@@ -12,7 +12,7 @@ gem "simple_calendar", "~> 0.1.9"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
                               
-
+gem 'high_voltage'
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
