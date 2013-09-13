@@ -6,7 +6,7 @@
 	<table class="table table-bordered">
 	  <tr>
 	    <th>Name</th>
-	    <th>Instrument</th>
+	    <th>Instruments</th>
 	    <th>User</th>
 	    <th>Bands</th>
 	  </tr>
@@ -14,7 +14,10 @@
 	<% @musicians.each do |musician| %>
 	  <tr>
 	    <td><%= link_to musician.name, musician %></td>
-	    <td><%= musician.instrument %></td>
+	    <td><% musician.instruments.each do |i| %>
+  				<%= i.name %>
+  			<%end%>
+  		</td>
 	    <td><%= link_to musician.user_id, musician.user %></td>
 	    <td><% musician.bands.each do |b|%>
 		    	<p><%= link_to b.name, b%></p>
