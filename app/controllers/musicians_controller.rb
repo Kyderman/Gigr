@@ -5,7 +5,7 @@ class MusiciansController < ApplicationController
   
   def index
     @musicians = Musician.all
-
+     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @musicians }

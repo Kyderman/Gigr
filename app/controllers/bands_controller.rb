@@ -37,6 +37,7 @@ class BandsController < ApplicationController
   # GET /bands/1/edit
   def edit
     @band = Band.find(params[:id])
+   
   end
 
   
