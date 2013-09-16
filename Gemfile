@@ -15,12 +15,14 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 gem 'high_voltage'
 gem 'cancan'
 gem 'devise'
+
 gem 'figaro'
 gem 'rolify'
 gem 'simple_form'
 gem 'stripe'
 gem 'stripe_event'
 gem "ransack"
+gem "watu_table_builder", :require => "table_builder"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

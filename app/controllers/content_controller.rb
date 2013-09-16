@@ -6,6 +6,7 @@ class ContentController < ApplicationController
   end
   
   def band
+    
     authorize! :view, :band, :message => 'Access limited to Band Plan subscribers.'
   end
   

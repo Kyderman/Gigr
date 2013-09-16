@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
+      
       if current_user.has_role? :musician
         redirect_to '/content/musician'
       end
