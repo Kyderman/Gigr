@@ -14,27 +14,73 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
     	
-    	<% if user_signed_in? %>
+    	<% if !user_signed_in? %>
     		<li>
-    			<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+    			<%= link_to 'Login', new_user_session_path %>       
     		</li>
-  		<% else %>
     		<li>
-    			<%= link_to 'Login', new_user_session_path %>  
+    			<%= link_to 'About', page_path('about') %>        
     		</li>
   		<% end %>
   		<% if user_signed_in? %>
-    		<li>
+    		<% if current_user.has_role? :admin %>
+    		<li class="dropdown">
+  				<a data-toggle="dropdown" href="#">Admin<span class="caret"> </a>
+  				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+	    			<li>
+	      				<%= link_to 'Users', users_path %>
+	      			</li>
+	      			<li>
+	      				<%= link_to 'Musicians', musicians_path %>
+	      			</li>
+	      			<li>
+	      				<%= link_to 'Bands', bands_path %>
+	      			</li>
+	      			<li>
+	      				<%= link_to 'Venues', venues_path %>
+	      			</li>
+	      			<li>
+	      				<%= link_to 'Events', events_path %>
+	      			</li>
+	      			<li>
+	      				<%= link_to 'Instruments', instruments_path %>
+	      			</li>
+  				</ul>
+			</li>
+      		<% else%>	
+      			
+    		<% end %>
+    		
+			
+			
+  		<% end %>
+  		
+  		
+    </ul>
+    <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.roles.first.name.capitalize + " | " + current_user.name%><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        	<% if (current_user.has_role?(:musician)) || (current_user.has_role?(:band))  %>
+	      	<li>
+	      		<%= link_to 'My Profile', Musician.where(user_id: current_user.id).first %>
+	      	</li>
+	      	<%elsif (current_user.has_role?(:venue))%>
+	      		<li>
+	      		<%= link_to 'My Profile', Venue.where(user_id: current_user.id).first %>
+	      		</li>
+	      	<%end%>
+            <li>
     			<%= link_to 'Edit account', edit_user_registration_path %>
     		</li>
-    		<% if current_user.has_role? :admin %>
-      			<li>
-      				<%= link_to 'Admin', users_path %>
-     			 </li>
-    		<% end %>
-  		<% end %>
-  		<li>
-    			<%= link_to 'About', page_path('about') %>        
-    	</li>
+	    	<li>
+	      		<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+	      	</li>
+	      	
+        </ul>
+      </li>
     </ul>
+    <%end%>
+    
   </div><!-- /.navbar-collapse -->
