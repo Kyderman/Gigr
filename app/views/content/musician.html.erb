@@ -1,10 +1,13 @@
 <%@current_musician = Musician.where(:user_id => current_user.id).first %> 
 <div class="jumbotron">
 	<h1>Hello, <%= @current_musician.name %></h1>
-	<% if @current_musician.instrument.blank? %>
+	<% if @current_musician.instruments.blank? %>
 		<p>You play no instrument? propostorous!</p>
 	<% else %>
-		<p><%= @current_musician.instrument %></p>
+		<p>Instruments: <% @current_musician.instruments.each do |i| %>
+			<%= i.name %>
+			<%end%>
+		</p>
 	<% end %>
 	<%= link_to 'Edit', edit_musician_path(@current_musician), :class => "btn btn-info"%>
 </div>

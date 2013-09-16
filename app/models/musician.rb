@@ -1,5 +1,5 @@
 class Musician < ActiveRecord::Base
-  attr_accessible :name, :user_id, :instrument_id
+  attr_accessible :name, :user_id, :instrument_ids
   has_many :bands_musician
   has_many :musicians_instrument
   has_many :instruments, through: :musicians_instrument

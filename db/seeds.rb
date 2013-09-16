@@ -28,11 +28,24 @@ user4.create_user_type
 
 puts "users: #{user2.name}, #{user3.name}, #{user4.name}"
 
-puts 'EXTRA MUSICIANS'
-Musician.create(name: "Ryan Inglis", instrument: "Guitar")
-Musician.create(name: "Peter Fealey", instrument: "Bass")
-Musician.create(name: "Rob Whelan", instrument: "Drums")
-Musician.create(name: "Tom Forrester", instrument: "Vocals")
+puts 'INSTRUMENTS'
+ins1 = Instrument.create(name: "Vocals")
+ins2 = Instrument.create(name: "Drums")
+ins3 = Instrument.create(name: "Guitar")
+ins4 = Instrument.create(name: "Bass")
+ins5 = Instrument.create(name: "Lighting")
+ins6 = Instrument.create(name: "Sound Technician")
+
+puts 'MUSICIANS'
+mus1 = Musician.create(name: "Ryan Inglis")
+mus1.instruments << ins3
+mus1.instruments << ins1
+mus2 = Musician.create(name: "Peter Fealey")
+mus2.instruments << ins4
+mus3 = Musician.create(name: "Rob Whelan")
+mus3.instruments << ins2
+mus4 = Musician.create(name: "Tom Forrester")
+mus4.instruments << ins1
 
 
 

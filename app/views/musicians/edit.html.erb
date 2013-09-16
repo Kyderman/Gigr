@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-sm-12">	
 			<%= render 'form' %>
-			<%= link_to 'Exit Edit', @musician, :class => "btn btn-success" %>
+			<%= link_to 'Exit Edit', @musician, :class => "btn btn-info" %>
 			<% if current_user.has_role? :admin%>
 				<%= link_to 'Back', musicians_path, :class => "btn btn-danger" %>
 			<%end%>

@@ -1,6 +1,18 @@
-<h1>Editing instrument</h1>
 
-<%= render 'form' %>
+<div class="jumbotron">
+	<h1>Edit Instrument</h1>
+</div>
+<div class ="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<%= render 'form' %>
+			<%= link_to 'Exit Edit', @instrument, :class => "btn btn-info" %>
+			<% if current_user.has_role? :admin%>
+				<%= link_to 'Back', instruments_path, :class => "btn btn-danger" %>
+			<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "layouts/footer"%>
 
-<%= link_to 'Show', @instrument %> |
-<%= link_to 'Back', instruments_path %>
