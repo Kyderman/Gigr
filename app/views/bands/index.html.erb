@@ -7,7 +7,8 @@
 	  <tr>
 	    <th>Name</th>
 	    <th>Owner</th>
-	    <th>Musicians</th>
+	    <th>Members</th>
+	    <th>Invited</th>
 	   
 	  </tr>
 	
@@ -15,7 +16,11 @@
 	  <tr>
 	    <td><%= band.name %></td>
 	    <td><%= link_to band.user.name, band.user %></td>
-	    <td><% band.musicians.each do |m|%>
+	    <td><% band.get_members.each do |m|%>
+	    	<p><%= link_to m.name, m%></p>
+	    	<%end%>
+	    </td>
+	    <td><% band.get_invited.each do |m|%>
 	    	<p><%= link_to m.name, m%></p>
 	    	<%end%>
 	    </td>

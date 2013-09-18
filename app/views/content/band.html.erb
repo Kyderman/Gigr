@@ -25,6 +25,7 @@
 	      			<th>Name</th>
 	      			<th>Owner</th>
 	      			<th>Members</th>
+	      			<th>Invited</th>
 	    		</tr>
 	  		</thead>
 	  		
@@ -42,15 +43,24 @@
 	      				</td>
 	      			<td>
 	      				
-	      			<% b.musicians.each do |m| %>
+	      			<% b.get_members.each do |m| %>
+	      				
 	      				
 	      				<%if m.id != @current_musician.id%>
 	      					<p><%= link_to m.name, m %></p>
 	  					<%else%>
 							<p><%= link_to "You", m %></p>
 						<%end%>
+						
 	  
 	      			<%end%>
+	      			</td>
+	      			
+	      			<td>
+	      				<% b.get_invited.each do |m| %>
+	      					<p><%= link_to m.name, m %></p>
+	      				<%end%>
+	      				
 	      			</td>
 	      			<%if @band_owner == @current_musician%>
 	    				<td class="text-center"><%= link_to 'Edit', edit_band_path(b), :class => "btn-sm btn-info" %></td>

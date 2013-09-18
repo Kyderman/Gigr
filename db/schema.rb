@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918105637) do
+ActiveRecord::Schema.define(:version => 20130918111420) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130918105637) do
   create_table "bands_events", :force => true do |t|
     t.integer  "band_id"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "accepted",   :default => false
   end
 
   add_index "bands_events", ["band_id", "event_id"], :name => "index_bands_events_on_band_id_and_event_id", :unique => true
@@ -35,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20130918105637) do
   create_table "bands_musicians", :force => true do |t|
     t.integer  "band_id"
     t.integer  "musician_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.boolean  "accepted"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "accepted",    :default => false
   end
 
   add_index "bands_musicians", ["band_id", "musician_id"], :name => "index_bands_musicians_on_band_id_and_musician_id", :unique => true

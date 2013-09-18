@@ -19,7 +19,7 @@
 	
 	<p>
 	  <b>Members:</b>
-	  <% @band.musicians.each do |m| %>
+	  <% @band.get_members.each do |m| %>
 	  	<%= link_to m.name, m %>
 	  <% end %>
 	  
