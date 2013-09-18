@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130913155520) do
+ActiveRecord::Schema.define(:version => 20130918104621) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -32,11 +32,14 @@ ActiveRecord::Schema.define(:version => 20130913155520) do
   add_index "bands_events", ["band_id"], :name => "index_bands_events_on_band_id"
   add_index "bands_events", ["event_id"], :name => "index_bands_events_on_event_id"
 
+  
+
   create_table "bands_musicians", :force => true do |t|
     t.integer  "band_id"
     t.integer  "musician_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "accepted"
   end
 
   add_index "bands_musicians", ["band_id", "musician_id"], :name => "index_bands_musicians_on_band_id_and_musician_id", :unique => true
@@ -53,11 +56,15 @@ ActiveRecord::Schema.define(:version => 20130913155520) do
     t.datetime "end"
   end
 
+  
+
   create_table "instruments", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  
 
   create_table "musicians", :force => true do |t|
     t.string   "name"
