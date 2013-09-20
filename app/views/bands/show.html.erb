@@ -15,15 +15,12 @@
 	  <%= @band.user_id  %>
 	</p>
 	<%end%>
-
 	
-	<p>
-	  <b>Members:</b>
-	  <% @band.get_members.each do |m| %>
-	  	<%= link_to m.name, m %>
-	  <% end %>
-	  
-	</p>
+	<b>Members:</b>
+	<% @band.musicians.each do |m|%>
+	    	<%= link_to m.name, m%>
+	<%end%>
+	
 </div>
 
 <div class="well">

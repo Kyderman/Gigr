@@ -12,6 +12,8 @@ GigApp::Application.routes.draw do
 
 
   resources :musicians
+  
+ 
 
 
   mount StripeEvent::Engine => '/stripe'
@@ -20,7 +22,11 @@ GigApp::Application.routes.draw do
   get "content/venue"
 
 
-  
+  resources :bands_musician do
+  post :reject
+  post :accept
+end
+ 
 
   authenticated :user do
     root :to => 'home#index'

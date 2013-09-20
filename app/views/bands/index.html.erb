@@ -16,14 +16,11 @@
 	  <tr>
 	    <td><%= band.name %></td>
 	    <td><%= link_to band.user.name, band.user %></td>
-	    <td><% band.get_members.each do |m|%>
+	    <td><% band.musicians.each do |m|%>
 	    	<p><%= link_to m.name, m%></p>
 	    	<%end%>
 	    </td>
-	    <td><% band.get_invited.each do |m|%>
-	    	<p><%= link_to m.name, m%></p>
-	    	<%end%>
-	    </td>
+	    
 	    <td class="text-center"><%= link_to 'Show', band,:class => "btn-sm btn-success" %></td>
 	    <td class="text-center"><%= link_to 'Edit', edit_band_path(band),:class => "btn-sm btn-info" %></td>
 	    <td class="text-center"><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn-sm btn-danger"  %></td>

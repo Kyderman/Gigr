@@ -25,7 +25,7 @@
 	  		</thead>
 	  		
 	  		<tbody>
-	  			<%@current_musician.get_band_invites.each do |b|%>
+	  			<%@current_musician.invited_bands.each do |b|%>
 	  			
 	  			
   
@@ -34,7 +34,9 @@
 	      			<td><%= link_to b.name, b%></td>
 	      			
 	      			
-	    			<td class="text-center"></td>
+	    			<td class="text-center"><%= button_to "Accept", bands_musician_accept_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-success" %> </td>
+	    			<td class="text-center"><%= button_to "Reject", bands_musician_reject_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-danger" %> </td>
+	    			
 	    			
 	      			
 	    		</tr>
@@ -48,7 +50,7 @@
   <h1>Bands</h1>
 </div>
 	
-	<% @bands = @current_musician.bands %>
+	<% @bands = @current_musician.member_bands %>
 	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>

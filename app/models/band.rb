@@ -1,45 +1,42 @@
 class Band < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :musician_ids
   has_many :bands_musician
+  has_many :musicians, through: :bands_musician
   has_many :bands_event
   belongs_to :user
-  has_many :musicians, through: :bands_musician
+  
   has_many :events, through: :bands_event
   accepts_nested_attributes_for :events, :bands_event
   
-  def is_member(m)
-    @cur = BandsMusician.where(band_id: self.id, musician_id: m.id).first
-    if @cur.accepted == true
-      return true
+  
+  def invited_members
+    @inv = []
+    
+    self.musicians.each do |r|
+      
+      if BandsMusician.where(band_id: self.id, musician_id: r.id).first.accepted == false
+        @inv << r
+      end
+      
     end
-    return false
+    
+    return @inv
   end
   
-  def make_member(m)
-    @cur = BandsMusician.where(band_id: self.id, musician_id: m.id).first
-    @cur.accepted = true
-    @cur.save
-  end
-  
-  def get_invited
-    @invited =[]
-  
-    self.musicians.each do |m|    
-      if !self.is_member(m)
-        @invited << m  
-      end          
+  def members
+    @inv = []
+    
+    self.musicians.each do |r|
+      
+      if BandsMusician.where(band_id: self.id, musician_id: r.id).first.accepted == true
+        @inv << r
+      end
+      
     end
-    return @invited
+    
+    return @inv
   end
   
-  def get_members
-    @members =[]
+
   
-    self.musicians.each do |m|    
-      if self.is_member(m)
-        @members << m  
-      end          
-    end
-    return @members
-  end
 end

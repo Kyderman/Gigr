@@ -1,26 +1,39 @@
 class Musician < ActiveRecord::Base
   attr_accessible :name, :user_id, :instrument_ids, :band_id
+  has_many :bands, through: :bands_musician
   has_many :bands_musician
   has_many :musicians_instrument
   has_many :instruments, through: :musicians_instrument
   belongs_to :user
-  has_many :bands, through: :bands_musician
   
-  
-  def get_band_invites
-    @invites =[]
-  
-    self.bands.each do |b|    
-      if !b.is_member(self)
-        @invites << b  
-      end          
+  def invited_bands
+    @inv = []
+    
+    self.bands.each do |r|
+      
+      if BandsMusician.where(band_id: r.id, musician_id: self.id).first.accepted == false
+        @inv << r
+      end
+      
     end
-    return @invites
+    
+    return @inv
   end
   
-  def accept_band_invite(b)
-    @cur = BandsMusician.where(band_id: b.id, musician_id: self.id).first
-    @cur.accepted = true
-    @cur.save
+  def member_bands
+    @inv = []
+    
+    self.bands.each do |r|
+      
+      if BandsMusician.where(band_id: r.id, musician_id: self.id).first.accepted == true
+        @inv << r
+      end
+      
+    end
+    
+    return @inv
   end
+  
+  
+  
 end

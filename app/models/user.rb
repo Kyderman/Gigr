@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
         @musician = Musician.find_by_user_id(self.id)
         @band = Band.create(name: name + "'s Band", user_id: self.id)
         @musician.bands << @band
-        @band.make_member(@musician)
+        BandsMusician.accept(@musician, @band)
       end 
       if self.has_role? :venue
         Venue.create(name: name + "'s Venue", user_id: self.id)

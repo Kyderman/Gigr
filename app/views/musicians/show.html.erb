@@ -21,6 +21,13 @@
 	</p>
 <%end%>
 
+	<p>
+  <b>Bands:</b>
+  <% @musician.bands.each do |b| %>
+  <%= b.name %>
+  <%end%>
+</p>
+
 </div>
 <div class="well">
 	<% if can? :update, @musician%>
