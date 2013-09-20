@@ -34,8 +34,8 @@
 	      			<td><%= link_to b.name, b%></td>
 	      			
 	      			
-	    			<td class="text-center"><%= button_to "Accept", bands_musician_accept_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-success" %> </td>
-	    			<td class="text-center"><%= button_to "Reject", bands_musician_reject_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-danger" %> </td>
+	    			<td class="text-center"><%= link_to "Accept", bands_musician_accept_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-success" %> </td>
+	    			<td class="text-center"><%= link_to "Reject", bands_musician_reject_path(BandsMusician.where(band_id: b.id, musician_id: @current_musician.id).first.id), :class => "btn btn-sm btn-danger" %> </td>
 	    			
 	    			
 	      			

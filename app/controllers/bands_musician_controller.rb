@@ -1,5 +1,7 @@
 class BandsMusicianController < ApplicationController
   
+  load_and_authorize_resource
+  
   def req
     
     @band = Band.where(user_id: current_user.id).first

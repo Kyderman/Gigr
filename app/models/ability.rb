@@ -13,8 +13,18 @@ class Ability
         can :update, Musician do |m|
           m.try(:user) == user
         end
+        can :reject, BandsMusician do |b|
+          b.try(:musician_id) == musician_id
+        end
+        can :accept, BandsMusician do |b|
+          b.try(:musician_id) == musician_id
+        end
       elsif user.has_role? :band
+        can :req, BandsMusician
         
+        can :reject, BandsMusician do |b|
+          b.try(:band_id) == band_id
+        end
         can :view, :band
         can :update, Band do |b|
           b.try(:user) == user

@@ -21,6 +21,23 @@
 	    	<%= link_to m.name, m%>
 	<%end%>
 	
+	<% if current_user.has_role? :musician%>
+  	<%@cur_mus = Musician.where(user_id: current_user.id).first%>
+  	
+  <%if @cur_mus.invited_bands.include?(@band)%>
+  <div class="row">
+  	 <div class="container">
+  
+  	<%= link_to "Accept Invite", bands_musician_accept_path(BandsMusician.where(band_id: @band.id, musician_id: @cur_mus.id).first.id), :class => "btn btn-success" %>
+  	
+  	
+  	<%= link_to "Reject Invite", bands_musician_reject_path(BandsMusician.where(band_id: @band.id, musician_id: @cur_mus.id).first.id), :class => "btn btn-danger" %>
+  <%end%>
+  <%end%>
+ 	</div>
+   </div>
+   
+	
 </div>
 
 <div class="well">
@@ -33,6 +50,7 @@
 	<%else%>
 		<%= link_to 'Back', root_path, :class => "btn btn-danger" %>
 	<%end%>
+	
 </div>
 
 

@@ -23,9 +23,9 @@ GigApp::Application.routes.draw do
 
 
   resources :bands_musician do
-    post :req
-  post :reject
-  post :accept
+    get :req
+  get :reject
+  get :accept
 end
  
 
