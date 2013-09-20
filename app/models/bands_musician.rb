@@ -1,5 +1,5 @@
 class BandsMusician < ActiveRecord::Base
-  attr_accessible :band_id, :musician_id, :accepted
+  attr_accessible :band_id, :musician_id, :accepted, :band, :musician
   belongs_to :band
   belongs_to :musician
   

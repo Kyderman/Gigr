@@ -4,6 +4,15 @@
 <h1>
  
   <%= @musician.name %>
+  <% if current_user.has_role? :band%>
+  	<%@cur_band = Band.where(user_id: current_user.id).first%>
+  	<%if !@cur_band.musicians.include?(@musician)%>
+  	<%= button_to "Invite To Band", bands_musician_req_path(@musician.id), :class => "btn btn-success" %>
+  <%end%>
+  <%if @cur_band.invited_members.include?(@musician)%>
+  	<%= button_to "Cancel Invite", bands_musician_reject_path(BandsMusician.where(band_id: @cur_band.id, musician_id: @musician.id).first.id), :class => "btn btn-danger" %>
+  <%end%>
+  <%end%>
 </h1>
 
 

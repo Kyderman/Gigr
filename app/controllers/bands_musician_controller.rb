@@ -1,9 +1,9 @@
 class BandsMusicianController < ApplicationController
   
   def req
-    @this = BandsMusician.find(params[:bands_musician_id])
-    @band = Band.find(@this.band_id)
-    @musician = Musician.find(@this.musician_id)
+    
+    @band = Band.where(user_id: current_user.id).first
+    @musician = Musician.find(params[:bands_musician_id])
     unless @musician.nil?
       if BandsMusician.request(@band, @musician)
         flash[:success] = "#{@musician.name} has been invited to #{@band.name}"
@@ -33,7 +33,11 @@ class BandsMusicianController < ApplicationController
     @band = Band.find(@this.band_id)
     @musician = Musician.find(@this.musician_id)
       if BandsMusician.reject(@musician, @band)
-        flash[:success] = "Band invite with #{@band.name} rejected"
+        if current_user.has_role? :band
+        flash[:danger] = "Invite to #{@musician.name} cancelled"
+        else
+        flash[:danger] = "Band invite with #{@band.name} rejected"
+        end
       else
         flash[:danger] = "Band invite with #{@band.name} cannot be rejected"
       end
